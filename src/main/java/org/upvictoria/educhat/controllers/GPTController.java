@@ -40,6 +40,7 @@ public class GPTController {
 
             return extractMessageFromJSONResponse(response.toString());
         } catch (IOException e) {
+            System.out.println(e);
             throw new RuntimeException(e);
         }
     }
@@ -51,6 +52,15 @@ public class GPTController {
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestProperty("Authorization", "Bearer " + apiKey);
         connection.setDoOutput(true);
+
+        System.out.println("Petición:");
+        System.out.println("URL: " + url);
+        System.out.println("Método: POST");
+        System.out.println("Headers:");
+        System.out.println("  Content-Type: application/json");
+        System.out.println("  Authorization: Bearer " + apiKey);
+        System.out.println("Body:");
+        System.out.println(body);
 
         OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
         writer.write(body);
